@@ -4,17 +4,17 @@ on:
   workflow_call:
     inputs:
       organization:
-        description: 'The name of the organization which the Project belongs to'
-        default: 'instill-ai'
+        description: "The name of the organization which the Project belongs to"
+        default: "instill-ai"
         required: false
         type: string
       project_number:
-        description: 'The Project number'
+        description: "The Project number"
         required: true
         type: number
     secrets:
       botGitHubToken:
-        description: 'A personal access token token with org:write scope'
+        description: "A personal access token token with org:write scope"
         required: true
   pull_request:
     types:
@@ -34,7 +34,7 @@ jobs:
           gh api graphql -f query='
             query($org: String!, $number: Int!) {
               organization(login: $org){
-                projectNext(number: $number) {
+                projectV2(number: $number) {
                   id
                   fields(first:20) {
                     nodes {
